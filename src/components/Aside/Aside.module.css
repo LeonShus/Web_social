@@ -1,0 +1,8 @@
+.aside{
+  background-color: #2C9F45;
+  grid-area: aside;
+}
+
+.nav {
+  color: red;
+}
