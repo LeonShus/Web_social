@@ -3,6 +3,15 @@
   grid-area: aside;
 }
 
-.nav {
-  color: red;
+.nav{
+  padding: 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a.activeLink {
+  color: gold;
 }

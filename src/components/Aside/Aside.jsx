@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import classes from'./Aside.module.css'
 
 const Aside = () => {
@@ -5,19 +6,19 @@ const Aside = () => {
         <aside className={classes.aside}>
             <nav className={classes.nav}>
                 <div>
-                    <a>Profile</a>
+                    <NavLink to='/profile' activeClassName={classes.activeLink}>Profile</NavLink>
                 </div>
                 <div>
-                    <a>Messages</a>
+                    <NavLink to='/dialogs' activeClassName={classes.activeLink}>Dialogs</NavLink>
                 </div>
                 <div>
-                    <a>News</a>
+                    <NavLink to='/news' activeClassName={classes.activeLink}>News</NavLink>
                 </div>
                 <div>
-                    <a>Music</a>
+                    <NavLink to='/music' activeClassName={classes.activeLink}>Music</NavLink>
                 </div>
                 <div>
-                    <a>Settings</a>
+                    <NavLink to='/settings' activeClassName={classes.activeLink}>Settings</NavLink>
                 </div>
             </nav>
         </aside>

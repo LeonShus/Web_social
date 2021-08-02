@@ -9,3 +9,9 @@
                         "footer footer footer";
                         
 }
+
+
+.app-wrapper-content {
+  background-color: #52325D;
+  grid-area: main;
+}
