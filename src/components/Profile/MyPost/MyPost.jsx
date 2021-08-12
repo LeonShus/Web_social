@@ -1,26 +1,37 @@
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
+import React from 'react'
+import { addNewPostActionCreator, upgradePostTextActionCreator } from '../../../Store/state'
 
 
-const postData = [
-    {id: 1, message: 'Hi, my name is Leon', likeCount: 12},
-    {id: 1, message: 'Nice to meat you', likeCount: 188}
-]
+const MyPost = (props) => {
+    console.log(props.store.state, 'MyPost')
+    
 
-const postElem = postData.map(el => {
-    return  <Post message={el.message} likeCount={el.likeCount} />
-})
+    const postElem = props.store.getState().profilePage.postData.map(el => <Post message={el.message} likeCount={el.likeCount} />)
 
-const MyPost = () => {
+
+    let addPost = () => {
+        if(props.store.getState().profilePage.newPostText != ''){
+            props.store.dispatch(addNewPostActionCreator())
+        } else alert('No text')
+    }
+
+    let onPostChange = (e) => {
+
+        let text = e.target.value
+        props.store.dispatch(upgradePostTextActionCreator(text))
+    }
+    
     return (
         <div className={classes.myPostContainer}>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea onChange={onPostChange} placeholder='Enter post'
+                              value={props.store.getState().profilePage.newPostText}/>
                 </div>
                 <div>
-                    <button>Add post</button>
-                    <button>Post remove</button>
+                    <button onClick={ addPost }>Add post</button>
                 </div>
 
             </div>

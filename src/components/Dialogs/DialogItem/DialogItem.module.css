@@ -6,6 +6,11 @@
 }
 
 
-.dialogList{
+.dialogList {
     padding: 5px;
 } 
+
+.dialogAva{
+    height: 40px;
+    border-radius: 50%;
+}

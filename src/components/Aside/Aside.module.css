@@ -15,3 +15,8 @@
 nav a.activeLink {
   color: gold;
 }
+
+.friends {
+  background-color: blanchedalmond;
+  text-align: center;
+}

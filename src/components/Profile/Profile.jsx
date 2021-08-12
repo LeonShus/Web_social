@@ -3,10 +3,11 @@ import classes from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 const Profile = (props) => {
+    console.log(props, 'Profile')
     return (
         <main className={classes.main}>
             <ProfileInfo />
-            <MyPost />
+            <MyPost store={props.store}/>
         </main>
     )
 }
