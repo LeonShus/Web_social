@@ -1,25 +1,27 @@
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import MessageItem from './MessageItem/MessageItem'
-import React from 'react'
-import { sendNewMessageActionCreator, upgradeDialogAreaActionCreator } from '../../Store/state'
 
+
+// Компонента пользуется данными,
+// которые пришли из контейнера и вызывает callback функции
 
 
 const Dialogs = (props) => {
-    console.log(props.store, 'Dialogs')
+    console.log(props, 'Dialogs')
     
-    let dialogElements = props.store.getState().dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} id={el.id} avatar={el.avatar} />)
-    let messageElem = props.store.getState().dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} id={el.id} avatar={el.avatar} />)
+    let dialogElements = props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} avatar={el.avatar} />)
+    let messageElem = props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)
 
-
+    // добавляем сообщение в state
     let sendMessage = () => {
-        props.store.dispatch(sendNewMessageActionCreator())
+        props.onSendMessage()
     }
 
-    let dialogTextareaChange = (e) => {
+    // меняем с текст нового сообщения в state
+    let MessageChange = (e) => {
         let text = e.target.value
-        props.store.dispatch(upgradeDialogAreaActionCreator(text))
+        props.onMessageChange(text)
     }
 
     return (
@@ -33,8 +35,8 @@ const Dialogs = (props) => {
                     {messageElem}
                 </div>
                 <div>
-                    <textarea onChange={dialogTextareaChange}
-                              value={props.store.getState().dialogPage.newMessage}
+                    <textarea onChange={MessageChange}
+                              value={props.dialogPage.newMessage}
                               placeholder='Enter your message'></textarea>
                     <div>
                         <button onClick={sendMessage}>Send</button>

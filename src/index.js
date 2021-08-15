@@ -3,20 +3,23 @@ import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import App from './App';
-import { store } from './Store/state';
+import store from './Store/ReduxStore';
+import { Provider } from 'react-redux'
 
 console.log(store, 'Index')
-const renderTree = (store) => {
-    ReactDOM.render(
-      <React.StrictMode>
-        <App store={store}/>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-}
-  
-store.subscribe(renderTree)
 
-renderTree(store)
+// Разбиваем приложения на компоненты
+//Используем библиотеку React-Redux и прокидываем данные в контекст 
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
 
 reportWebVitals();

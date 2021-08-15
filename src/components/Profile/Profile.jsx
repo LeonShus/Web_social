@@ -1,4 +1,4 @@
-import MyPost from './MyPost/MyPost'
+import MyPostContainer from './MyPost/MyPostContainer'
 import classes from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 
@@ -7,7 +7,7 @@ const Profile = (props) => {
     return (
         <main className={classes.main}>
             <ProfileInfo />
-            <MyPost store={props.store}/>
+            <MyPostContainer/>
         </main>
     )
 }
