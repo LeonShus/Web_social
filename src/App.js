@@ -2,34 +2,41 @@ import './App.css';
 import Aside from './components/Aside/Aside';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Footer from './components/Footer/Footer';
-import Header from './components/Header/Header';
-import Profile from './components/Profile/Profile';
+import HeaderContainer from './components/Header/HeaderContainer';
 import { BrowserRouter, Route } from 'react-router-dom'
+import ProfileContainer from './components/Profile/ProfileContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersListContainer';
+import React from 'react';
 
 
-function App(props) {
-  console.log(props, 'App')
 
-  return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header />
-        <Aside />
-        <div class='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile />} />
-          <Route path='/dialogs' render={() => <DialogsContainer />} />
-          <Route path='/news' component={News} />
-          <Route path='/music' component={Music} />
-          <Route path='/settings' component={Settings} />
+
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div className='app-wrapper'>
+          <HeaderContainer />
+          <Aside />
+          <div class='app-wrapper-content'>
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/dialogs' render={() => <DialogsContainer />} />
+            <Route path='/news' render={() => <News />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+          </div>
+          <Footer />
+
         </div>
-        <Footer />
-
-      </div>
-    </BrowserRouter>
-  )
+      </BrowserRouter>
+    )
+  }
 }
 
 

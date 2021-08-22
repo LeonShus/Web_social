@@ -1,0 +1,25 @@
+.container {
+    margin: 1rem;
+    position: absolute;
+    background-color: blanchedalmond;
+}
+
+.userContainer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 10px;
+    margin: 10px;
+    background-color: teal;
+}
+
+.avatar {
+    height: 80px;
+}
+
+.target{
+    color: royalblue;
+    cursor: pointer;
+}
+.point {
+    cursor: pointer;
+}

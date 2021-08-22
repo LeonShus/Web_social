@@ -1,20 +1,23 @@
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import classes from './DialogItem.module.css'
 
-const DialogItem = (props) => {
-    return (
-        <div className={classes.dialogList}>
-            <div>
+class DialogItem extends React.Component {
+    render() {
+        return (
+            <div className={classes.dialogList}>
                 <div>
-                    <img className={classes.dialogAva} src={props.avatar}></img>
+                    <div>
+                        <img className={classes.dialogAva} src={this.props.avatar}></img>
+                    </div>
+                    <div>
+                        <NavLink to={'/dialogs/' + this.props.id}>{this.props.userName}</NavLink>
+                    </div>
+
                 </div>
-                <div>
-                    <NavLink to={'/dialogs/' + props.id}>{props.userName}</NavLink>
-                </div>
-                
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 

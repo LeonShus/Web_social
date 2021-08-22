@@ -1,18 +1,21 @@
+import React from 'react'
 import classes from './MessageItem.module.css'
 
 
-const MessageItem = (props) => {
-    console.log(props)
-    return (
-        <div className={classes.messages}>
-            <div>
-                <img src={props.avatar}></img>
+class MessageItem extends React.Component {
+
+    render() {
+        return (
+            <div className={classes.messages}>
+                <div>
+                    <img src={this.props.avatar}></img>
+                </div>
+                <div>
+                    {this.props.messageValue}
+                </div>
             </div>
-            <div>
-                {props.messageValue}
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default MessageItem

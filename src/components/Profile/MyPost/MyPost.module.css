@@ -1,5 +1,6 @@
 .myPostContainer {
     padding: 20px;
+    overflow: auto;
 }
 
 .post {

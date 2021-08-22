@@ -1,3 +1,4 @@
+import React from 'react'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import MessageItem from './MessageItem/MessageItem'
@@ -7,47 +8,45 @@ import MessageItem from './MessageItem/MessageItem'
 // которые пришли из контейнера и вызывает callback функции
 
 
-const Dialogs = (props) => {
-    console.log(props, 'Dialogs')
-    
-    let dialogElements = props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} avatar={el.avatar} />)
-    let messageElem = props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)
+class Dialogs extends React.Component {
 
     // добавляем сообщение в state
-    let sendMessage = () => {
-        props.onSendMessage()
+    sendMessage = () => {
+        this.props.onSendMessage()
     }
 
     // меняем с текст нового сообщения в state
-    let MessageChange = (e) => {
+    messageChange = (e) => {
         let text = e.target.value
-        props.onMessageChange(text)
+        this.props.onMessageChange(text)
     }
 
-    return (
-        <div className={classes.dialogs}>
-            <div>
-                {dialogElements}
-            </div>
-
-            <div className={classes.massageContainer}>
+    render() {
+        return (
+            <div className={classes.dialogs}>
                 <div>
-                    {messageElem}
+                    {this.props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} avatar={el.avatar} />)}
                 </div>
-                <div>
-                    <textarea onChange={MessageChange}
-                              value={props.dialogPage.newMessage}
-                              placeholder='Enter your message'></textarea>
+
+                <div className={classes.massageContainer}>
                     <div>
-                        <button onClick={sendMessage}>Send</button>
+                        {this.props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)}
+                    </div>
+                    <div>
+                        <textarea onChange={this.messageChange}
+                            value={this.props.dialogPage.newMessage}
+                            placeholder='Enter your message'></textarea>
+                        <div>
+                            <button onClick={this.sendMessage}>Send</button>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-
-        </div>
-    )
+        )
+    }
 }
 
 export default Dialogs

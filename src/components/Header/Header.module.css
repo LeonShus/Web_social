@@ -5,6 +5,14 @@
 }
 
 .logo{
-    height: 50px
+    position: absolute;
+    height: 50px;
+    width: 50px;
   }
-  
+
+.login{
+    float: right;
+}
+.login a {
+    color: green;
+}

@@ -1,42 +1,36 @@
+import React from 'react'
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
 
 
-const MyPost = (props) => {
-    console.log(props, 'MyPost')
-    
+class MyPost extends React.Component {
 
-    const postElem = props.profilePage.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)
-
-    // Добавляем пост в state
-    let addPost = () => {
-        props.onAddPost()
-    }
-
-    // Изменяем текст нового поста в state
-    let PostChange = (e) => {
+    addPost = () => this.props.addNewPost()
+    postChange = (e) => {
         let text = e.target.value
-        props.onPostChange(text)
+        this.props.upgradePostText(text)
     }
-    
-    return (
-        <div className={classes.myPostContainer}>
-            <div>
+
+    render() {
+        return (
+            <div className={classes.myPostContainer}>
                 <div>
-                    <textarea onChange={PostChange} placeholder='Enter post'
-                              value={props.profilePage.newPostText}/>
+                    <div>
+                        <textarea onChange={this.postChange} placeholder='Enter post'
+                            value={this.props.profilePage.newPostText} />
+                    </div>
+                    <div>
+                        <button onClick={this.addPost}>Add post</button>
+                    </div>
+
                 </div>
-                <div>
-                    <button onClick={ addPost }>Add post</button>
+                <div className={classes.post}>
+                    {this.props.profilePage.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)}
                 </div>
 
             </div>
-            <div className={classes.post}>
-                {postElem}
-            </div>
-
-        </div>
-    )
+        )
+    }
 }
 
 export default MyPost
