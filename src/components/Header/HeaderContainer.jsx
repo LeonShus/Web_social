@@ -1,19 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Header from './Header'
-import { authMainUser } from '../../Store/reducer/AuthReducer'
+import { logoutUser } from '../../Store/reducer/AuthReducer'
 import { withRouter } from 'react-router-dom'
 
 
 class HeaderContainer extends React.Component {
 
-    componentDidMount() {
-        this.props.authMainUser()
-    }
-
     render() {
         return (
-            <Header {...this.props.authUsersProps} />
+            <Header {...this.props.authUsersProps} logoutUser={this.props.logoutUser} />
         )
     }
 }
@@ -26,4 +22,4 @@ let mapStateToProps = (state) => {
 
 let getUrlHeaderContainer = withRouter(HeaderContainer)
 
-export default connect(mapStateToProps, { authMainUser })(getUrlHeaderContainer)
+export default connect(mapStateToProps, { logoutUser })(getUrlHeaderContainer)

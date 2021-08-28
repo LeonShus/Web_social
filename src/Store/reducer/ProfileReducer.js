@@ -1,12 +1,14 @@
-import { UsersApi } from "../../api/api"
+import { profileApi } from "../../api/api"
 
 const ADD_NEW_POST = 'ADD-NEW-POST'
-const UPGRADE_POST_TEXT = 'UPGRADE-POST-TEXT'
 const GET_PROFILE_INFO = 'GET-PROFILE-INFO'
+const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
 
 let defaultVal = {
 
     profileInfo: null,
+
+    profileStatus: '',
 
     postData: [
         { id: 1, message: 'Hi, my name is Leon', likeCount: 12 },
@@ -21,7 +23,7 @@ export const profileReducer = (state = defaultVal, action) => {
         case 'ADD-NEW-POST':
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPost,
                 likeCount: 0,
             }
             return {
@@ -29,14 +31,13 @@ export const profileReducer = (state = defaultVal, action) => {
                 postData: [...state.postData, newPost],
                 newPostText: ''
             }
-        case 'UPGRADE-POST-TEXT':
-            return {
-                ...state,
-                newPostText: action.text
-            }
         case 'GET-PROFILE-INFO':
             return {
                 ...state, profileInfo: { ...action.profileInfo }
+            }
+        case 'GET-PROFILE-STATUS':
+            return {
+                ...state, profileStatus: action.status
             }
         default:
             return state
@@ -44,15 +45,32 @@ export const profileReducer = (state = defaultVal, action) => {
 
 }
 
-export const addNewPost = () => ({ type: ADD_NEW_POST })
-export const upgradePostText = (text) => ({ type: UPGRADE_POST_TEXT, text: text })
+export const addNewPost = (newPost) => ({ type: ADD_NEW_POST, newPost })
 export const getProfileInfo = (profileInfo) => ({ type: GET_PROFILE_INFO, profileInfo })
+export const getProfileStatus = (status) => ({ type: GET_PROFILE_STATUS, status: status })
 
 //Thunk
 
-export const getUser = (userId) => {
-    return (dispatch) => {
-        UsersApi.getUser(userId)
+export const getUser = (userId) => (dispatch) => {
+    profileApi.getUser(userId)
         .then(response => dispatch(getProfileInfo(response)))
-    }
+
+}
+
+export const getStatus = (userId) => (dispatch) => {
+    profileApi.getUserStatus(userId)
+        .then(response => {
+            dispatch(getProfileStatus(response))
+        })
+
+}
+
+export const putUserStatus = (status) => (dispatch) => {
+    profileApi.putStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getProfileStatus(status))
+            }
+        })
+
 }

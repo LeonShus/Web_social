@@ -1,26 +1,30 @@
 import { connect } from "react-redux";
-import { getUsers, unfollow, follow } from "../../Store/reducer/UsersListReducer";
+import { receiveUsers, unfollow, follow } from "../../Store/reducer/UsersListReducer";
 import UsersList from './UsersList'
 import React from "react"
+// import { Redirect } from "react-router-dom";
+// import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
+import { getFetchingStatus, getUsersOnPage, getOnFetching, getPageOnTarget, getTotalUsersCount, getUsers } from "../../Store/reducer/UserListReducer";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.totalUsersCount, this.props.pageSize)
+        this.props.receiveUsers(this.props.totalUsersCount, this.props.usersOnPage)
 
     }
 
     onPageChange = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.receiveUsers(pageNumber, this.props.usersOnPage)
     }
 
     render() {
         return (
             <UsersList totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
+                usersOnPage={this.props.usersOnPage}
                 users={this.props.users}
                 onPageChange={this.onPageChange}
-                pageTarget={this.props.pageTarget}
+                pageOnTarget={this.props.pageOnTarget}
                 onFetching={this.props.onFetching}
                 fetchingStatus={this.props.fetchingStatus}
                 unfollow={this.props.unfollow}
@@ -31,18 +35,18 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersListPage.users,
-        pageSize: state.usersListPage.pageSize,
-        totalUsersCount: state.usersListPage.totalUsersCount,
-        pageTarget: state.usersListPage.currentPage,
-        onFetching: state.usersListPage.onFetching,
-        fetchingStatus: state.usersListPage.fetchingStatus
+        users: getUsers(state),
+        usersOnPage: getUsersOnPage(state),
+        totalUsersCount: getTotalUsersCount(state),
+        pageOnTarget: getPageOnTarget(state),
+        onFetching: getOnFetching(state),
+        fetchingStatus: getFetchingStatus(state),
     }
 }
 
+//прокидываем все через compose добавляя все обработчики
 
-export default connect(mapStateToProps, {
-                                            getUsers, unfollow,
-                                            follow
-                                        })(UsersContainer);
-
+export default compose(
+    connect(mapStateToProps, {receiveUsers, unfollow,follow }),
+    // withAuthRedirect
+)(UsersContainer)

@@ -9,9 +9,9 @@ const FETCHING_PROGRESS = 'FETCHING-PROGRESS'
 
 let defaultState = {
     users: [],
-    pageSize: 3,
+    usersOnPage: 3,
     totalUsersCount: 20,
-    currentPage: 1,
+    pageOnTarget: 1,
     onFetching: false,
     fetchingStatus: []
 }
@@ -42,7 +42,7 @@ export const usersReducer = (state = defaultState, action) => {
         case 'SET-USERS':
             return { ...state, users: action.users }
         case 'CHANGE-PAGE':
-            return { ...state, currentPage: action.page }
+            return { ...state, pageOnTarget: action.page }
         case 'ON-FETCHING':
             return { ...state, onFetching: action.status }
         case 'FETCHING-PROGRESS':
@@ -72,7 +72,7 @@ export const fetchProgress = (status, userId) => ({ type: FETCHING_PROGRESS, sta
 
 
 //Создаем Thunk и замыкаz в нем данные делаем запросы на сервер. 
-export const getUsers = (totalUsersCount, pageSize) => {
+export const receiveUsers = (totalUsersCount, pageSize) => {
     return (dispatch) => {
         dispatch(fetching(true))
         dispatch(changePage(totalUsersCount))

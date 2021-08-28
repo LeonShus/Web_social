@@ -15,9 +15,6 @@ let defaultVal = {
         { id: 3, message: 'Hello,Dog' },
         { id: 4, message: 'Cat' },
     ],
-
-    newMessage : ''
-
 }
 
 
@@ -26,22 +23,16 @@ export const dialogsReducer = (state = defaultVal, action) => {
         case 'SEND-MESSAGE':
             let newMessage = { 
                 id : 6, 
-                message : state.newMessage
+                message : action.newMessage
             }
             return {
                 ...state,
                 messagesData : [ ...state.messagesData, newMessage],
                 newMessage: ''
             }
-        case 'UPGRADE-DIALOG-BODY':
-            return {
-                ...state,
-                newMessage : action.text
-            }
         default : 
             return state
     }   
 }
 
-export const sendNewMessageActionCreator = () => ({type : SEND_MESSAGE})
-export const upgradeDialogAreaActionCreator = (text) => ({ type : UPGRADE_DIALOG_BODY, text : text })
+export const sendNewMessage = (newMessage) => ({ type : SEND_MESSAGE, newMessage })

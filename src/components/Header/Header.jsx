@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom'
 import classes from './Header.module.css'
 
 const Header = (props) => {
-    console.log(props)
     return (
         <header className={classes.header}>
             <div>
@@ -10,8 +9,11 @@ const Header = (props) => {
             </div>
             <div className={classes.login}>
                 {!props.isAuth ? 
-                    <NavLink to='/login'><div>Login</div></NavLink> : <div>{props.login}</div>
-                    // <NavLink to={`/profile/${props.id}`}><div>{props.login}</div></NavLink>
+                    <NavLink to='/login'><div>Login</div></NavLink> :
+                    <div>
+                        {props.login}
+                        <button onClick={props.logoutUser}>Logout</button>
+                    </div>
                 }
                 
             </div>

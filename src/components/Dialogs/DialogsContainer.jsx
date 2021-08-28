@@ -1,6 +1,8 @@
-import { sendNewMessageActionCreator, upgradeDialogAreaActionCreator } from '../../Store/reducer/DialogsReducer'
+import { sendNewMessage } from '../../Store/reducer/DialogsReducer'
 import Dialogs from './Dialogs'
 import {connect} from  'react-redux'
+import { withAuthRedirect } from '../../hoc/WithAuthRedirect'
+import { compose } from 'redux'
 
 
 let mapStateToProps = (state) => {
@@ -9,18 +11,11 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onSendMessage : () => {
-            dispatch(sendNewMessageActionCreator())
-        },
-        onMessageChange : (text) => {
-            dispatch(upgradeDialogAreaActionCreator(text))
-        }
-    }
-}
+
+//прокидываем все через compose добавляя все обработчики
 
 
-const DialogsContainer =  connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
-export default DialogsContainer
+export default compose(
+    connect(mapStateToProps, {sendNewMessage} ),
+    withAuthRedirect
+)(Dialogs)

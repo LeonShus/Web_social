@@ -6,17 +6,17 @@ import { NavLink } from "react-router-dom"
 
 
 const UsersList = (props) => {
-    let pages = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = Math.ceil(props.totalUsersCount / props.usersOnPage)
     let pagesArr = []
 
     for (let i = 1; i <= pages; i++) {
         pagesArr.push(i)
     }
-    console.log(props, 'adfafafafafaaaaaaaaaaaaaaaaaaa')
+    
     return (
         <div>
 
-            <span>{pagesArr.map(e => <span className={props.pageTarget == e ? classes.target : classes.point}
+            <span>{pagesArr.map(e => <span className={props.pageOnTarget == e ? classes.target : classes.point}
                 onClick={() => { props.onPageChange(e) }} >{e}</span>)}</span>
 
             <div>

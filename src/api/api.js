@@ -14,7 +14,8 @@ const instance = axios.create({
 export const UsersApi = {
 
     getUser(userId){
-        return instance.get(baseUrl + `profile/${userId}`).then(response => response.data)
+        alert('Chenge')
+        return profileApi.getUser(userId)
     },
 
     getUsersList(currentPage = 1, pageSize = 5){
@@ -34,7 +35,34 @@ export const UsersApi = {
 
 export const authApi = {
     authMe(){
-        return instance.get(baseUrl + '/auth/me').then(response => response.data)
+        return instance.get(baseUrl + 'auth/me').then(response => response.data)
     },
+    loginUser(email, password, rememberMe = false) {
+        return instance.post(baseUrl + 'auth/login', { email, password, rememberMe })
+            .then(response => response.data)
+    },
+    logout() {
+        return instance.delete(baseUrl + 'auth/login')
+        .then(response => response.data)
+    }
 }
+
+export const profileApi = {
+    getUser(userId){
+        return instance.get(baseUrl + `profile/${userId}`).then(response => response.data)
+    },
+    
+    getUserStatus(id){
+        return instance.get(baseUrl + `profile/status/${id}`)
+            .then(response => response.data)
+    },
+
+    putStatus(status) {
+        return instance.put(baseUrl + `profile/status`, { status: status})
+            
+    }
+}
+
+
+
 

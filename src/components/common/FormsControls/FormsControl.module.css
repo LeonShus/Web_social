@@ -1,0 +1,21 @@
+.error {
+    color: rgb(228, 49, 49);
+    font-size: .7rem;
+}
+
+.inputStyle{
+    height: 1.5rem;
+    padding: 0.3rem;
+    border: 1px solid black;
+    box-shadow: none;
+    
+}
+
+input:focus{
+    outline: none;
+    border: 1px solid rgb(58, 144, 214);
+}
+
+.inputInvalid{
+    border: 1px solid rgb(228, 49, 49);
+}

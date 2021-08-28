@@ -5,9 +5,10 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 class Profile extends React.Component {
     render() {
+
         return (
             <main className={classes.main}>
-                <ProfileInfo profileInfo={this.props.profileInfo}/>
+                <ProfileInfo profileInfo={this.props.profileInfo} profileStatus={this.props.profileStatus} putUserStatus={this.props.putUserStatus}/>
                 <MyPostContainer />
             </main>
         )
