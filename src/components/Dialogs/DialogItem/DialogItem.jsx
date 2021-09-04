@@ -6,15 +6,12 @@ class DialogItem extends React.Component {
     render() {
         return (
             <div className={classes.dialogList}>
-                <div>
                     <div>
                         <img className={classes.dialogAva} src={this.props.avatar}></img>
                     </div>
                     <div>
                         <NavLink to={'/dialogs/' + this.props.id}>{this.props.userName}</NavLink>
                     </div>
-
-                </div>
             </div>
         )
     }

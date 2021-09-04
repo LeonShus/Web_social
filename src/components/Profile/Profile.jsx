@@ -1,18 +1,16 @@
 import React from 'react'
 import MyPostContainer from './MyPost/MyPostContainer'
-import classes from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 
-class Profile extends React.Component {
-    render() {
-
-        return (
-            <main className={classes.main}>
-                <ProfileInfo profileInfo={this.props.profileInfo} profileStatus={this.props.profileStatus} putUserStatus={this.props.putUserStatus}/>
-                <MyPostContainer />
-            </main>
-        )
-    }
+let Profile = (props) => {
+    // console.log('Profile')
+    return (
+        <main>
+            <ProfileInfo profileInfo={props.profileInfo} profileStatus={props.profileStatus} putUserStatus={props.putUserStatus} />
+            <MyPostContainer />
+        </main>
+    )
 }
 
-export default Profile
+
+export default (Profile)

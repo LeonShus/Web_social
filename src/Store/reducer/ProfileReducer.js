@@ -1,8 +1,9 @@
 import { profileApi } from "../../api/api"
 
-const ADD_NEW_POST = 'ADD-NEW-POST'
-const GET_PROFILE_INFO = 'GET-PROFILE-INFO'
-const GET_PROFILE_STATUS = 'GET-PROFILE-STATUS'
+const ADD_NEW_POST = 'profile/ADD-NEW-POST'
+const GET_PROFILE_INFO = 'profile/GET-PROFILE-INFO'
+const GET_PROFILE_STATUS = 'profile/GET-PROFILE-STATUS'
+const DELETE_POST = 'profile/DELETE-POST'
 
 let defaultVal = {
 
@@ -20,7 +21,7 @@ let defaultVal = {
 
 export const profileReducer = (state = defaultVal, action) => {
     switch (action.type) {
-        case 'ADD-NEW-POST':
+        case 'profile/ADD-NEW-POST':
             let newPost = {
                 id: 5,
                 message: action.newPost,
@@ -31,13 +32,18 @@ export const profileReducer = (state = defaultVal, action) => {
                 postData: [...state.postData, newPost],
                 newPostText: ''
             }
-        case 'GET-PROFILE-INFO':
+        case 'profile/GET-PROFILE-INFO':
             return {
                 ...state, profileInfo: { ...action.profileInfo }
             }
-        case 'GET-PROFILE-STATUS':
+        case 'profile/GET-PROFILE-STATUS':
             return {
                 ...state, profileStatus: action.status
+            }
+        case 'profile/DELETE-POST':
+            return {
+                ...state,
+                postData: state.postData.filter(el => el.id != action.userId)
             }
         default:
             return state
@@ -48,29 +54,27 @@ export const profileReducer = (state = defaultVal, action) => {
 export const addNewPost = (newPost) => ({ type: ADD_NEW_POST, newPost })
 export const getProfileInfo = (profileInfo) => ({ type: GET_PROFILE_INFO, profileInfo })
 export const getProfileStatus = (status) => ({ type: GET_PROFILE_STATUS, status: status })
-
+export const deletePost = (userId) => ({ type: DELETE_POST, userId })
 //Thunk
 
-export const getUser = (userId) => (dispatch) => {
+export const getUser = (userId) => async (dispatch) => {
     profileApi.getUser(userId)
         .then(response => dispatch(getProfileInfo(response)))
 
 }
 
-export const getStatus = (userId) => (dispatch) => {
-    profileApi.getUserStatus(userId)
-        .then(response => {
-            dispatch(getProfileStatus(response))
-        })
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileApi.getUserStatus(userId)
+
+    dispatch(getProfileStatus(response))
+
 
 }
 
-export const putUserStatus = (status) => (dispatch) => {
-    profileApi.putStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getProfileStatus(status))
-            }
-        })
+export const putUserStatus = (status) => async (dispatch) => {
+    let response = await profileApi.putStatus(status)
 
+    if (response.data.resultCode === 0) {
+        dispatch(getProfileStatus(status))
+    }
 }

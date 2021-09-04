@@ -1,14 +1,13 @@
+import React from 'react'
 import { connect } from 'react-redux'
 import { addNewPost } from '../../../Store/reducer/ProfileReducer'
 import MyPost from './MyPost'
 
-
-
 let mapStateToProps = (state) => {
     return {
-        profilePage : state.profilePage
+        postData : state.profilePage.postData
     }
 }
 
 
-export default connect(mapStateToProps, { addNewPost })(MyPost)
+export default React.memo(connect(mapStateToProps, { addNewPost })(MyPost))

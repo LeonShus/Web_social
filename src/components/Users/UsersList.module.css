@@ -1,7 +1,7 @@
 .container {
     margin: 1rem;
     position: absolute;
-    background-color: blanchedalmond;
+    background-color: #E7E7E7;
 }
 
 .userContainer {
@@ -9,17 +9,10 @@
     grid-template-columns: 1fr 2fr;
     padding: 10px;
     margin: 10px;
-    background-color: teal;
+    background-color: #90D4D6;
 }
 
 .avatar {
     height: 80px;
 }
 
-.target{
-    color: royalblue;
-    cursor: pointer;
-}
-.point {
-    cursor: pointer;
-}

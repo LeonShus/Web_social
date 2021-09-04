@@ -1,27 +1,24 @@
 import classes from "./UsersList.module.css"
-import userPhoto from '../../assets/images/userDef.jpg'
+import userPhoto from '../../assets/images/userDef.png'
 import Preloader from "../common/preloader/Preloader"
 import { NavLink } from "react-router-dom"
+import { Pagination } from "../common/Pagination/Pagination"
 
 
 
 const UsersList = (props) => {
-    let pages = Math.ceil(props.totalUsersCount / props.usersOnPage)
-    let pagesArr = []
-
-    for (let i = 1; i <= pages; i++) {
-        pagesArr.push(i)
-    }
     
     return (
         <div>
 
-            <span>{pagesArr.map(e => <span className={props.pageOnTarget == e ? classes.target : classes.point}
-                onClick={() => { props.onPageChange(e) }} >{e}</span>)}</span>
+            <Pagination totalItemsCount={props.totalUsersCount}
+                        usersOnPage={props.usersOnPage}
+                        pageOnTarget={props.pageOnTarget}
+                        onPageChange={props.onPageChange}/>
 
-            <div>
-                {props.onFetching ? <Preloader /> : null}
-            </div>
+            
+            {props.onFetching ? <Preloader /> : null}
+            
 
             <div className={classes.container}>
                 {

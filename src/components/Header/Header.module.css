@@ -1,18 +1,30 @@
 .header {
-    background-color: #E4E932;
+    background-color: #2d3538;
     grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   
 }
 
-.logo{
-    position: absolute;
-    height: 50px;
-    width: 50px;
-  }
-
-.login{
-    float: right;
+.logo {
+    height: 3rem;
 }
+
+.login {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.login button {
+    margin-left: 10px;
+}
+
 .login a {
-    color: green;
+    text-decoration: none;
+    color: white;
+}
+
+.login a:hover {
+    color: #a4dbdb;
 }

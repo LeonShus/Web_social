@@ -1,4 +1,10 @@
 .footer {
-    background-color: #BE0027;
+    background-color: #2d3538;
     grid-area: footer;
+  }
+
+  .email {
+    color:white;
+    padding: 3px;
+    text-align: right;
   }

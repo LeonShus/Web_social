@@ -1,44 +1,49 @@
-import { Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
 import { MyTextarea } from '../../common/FormsControls/FormsControls'
 import classes from './MyPost.module.css'
 import Post from './Post/Post'
 import * as Yup from 'yup'
+import Button from '../../common/Buttons/Button'
 
 
-class MyPost extends React.Component {
+const MyPost = React.memo((props) => {
 
-    addPost = (newPost) => this.props.addNewPost(newPost)
 
-    render() {
-        return (
-            <div className={classes.myPostContainer}>
-                <Formik
-                    initialValues={{ newPost: '' }}
-                    validationSchema = {Yup.object({
-                        newPost: Yup.string()
-                            .max(10, 'Max chars 300')
-                    })}
-                    onSubmit = { values => {
-                        console.log(values)
-                        this.addPost(values.newPost)
-                    }}
-                >
-                    <Form>
-                        <MyTextarea
-                            name='newPost'
-                            type='text'
-                        />
-                        <button type='submit'>Post</button>
-                    </Form>
-                </Formik>
-                <div className={classes.post}>
-                    {this.props.profilePage.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)}
-                </div>
+    let posts = props.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)
+
+    let addPost = (newPost) => props.addNewPost(newPost)
+
+    
+    return (
+        <div className={classes.myPostContainer}>
+            <Formik
+                initialValues={{ newPost: '' }}
+                validationSchema={Yup.object({
+                    newPost: Yup.string()
+                        .max(10, 'Max chars 300')
+                })}
+                onSubmit={values => {
+                    console.log(values)
+                    addPost(values.newPost)
+                }}
+            >
+                <Form>
+                    <MyTextarea
+                        name='newPost'
+                        type='text'
+                    />
+                    <Button buttonText='Post' type='submit'/>
+                    {/* <button type='submit'>Post</button> */}
+                </Form>
+            </Formik>
+            <div className={classes.post}>
+                {posts}
             </div>
-        )
-    }
-}
+        </div>
+    )
+
+})
 
 export default MyPost
 

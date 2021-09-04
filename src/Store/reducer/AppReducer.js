@@ -1,7 +1,7 @@
 import { authMainUser } from "./AuthReducer"
 
 
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
+const INITIALIZED_SUCCESS = 'appReducer/INITIALIZED-SUCCESS'
 
 let defaultVal = {
     initialized: false,
@@ -11,7 +11,7 @@ let defaultVal = {
 
 export const appReducer = (state = defaultVal, action) => {
     switch (action.type) {
-        case 'INITIALIZED-SUCCESS':
+        case 'appReducer/INITIALIZED-SUCCESS':
             return {
                 ...state,
                 initialized : true
@@ -27,11 +27,7 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS })
 
 //Делаем thunk
 export const initializeApp = () => (dispatch) => {
-
-    let promise = dispatch(authMainUser())
-        
-    promise.then(() => dispatch(initializedSuccess()))
-    
-
+    dispatch(authMainUser())
+        .then(() => dispatch(initializedSuccess()))
         
 }

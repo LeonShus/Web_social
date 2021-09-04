@@ -1,6 +1,7 @@
 .aside{
-  background-color: #2C9F45;
+  background-color: #666666;
   grid-area: aside;
+  font-size: 1.3rem;
 }
 
 .nav{
@@ -13,10 +14,11 @@
 }
 
 nav a.activeLink {
-  color: gold;
+  color: #a4dbdb;
 }
 
 .friends {
-  background-color: blanchedalmond;
+  background-color: #2D3538;
+  color: white;
   text-align: center;
 }

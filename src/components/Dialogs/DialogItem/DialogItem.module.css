@@ -1,14 +1,15 @@
+.dialogList {
+    display: flex;
+    padding: 5px;
+    border-top: 1px solid #2D3538;
+    background-color: #E7E7E7;
+} 
 
 .dialogList a{
     text-decoration: none;
-    color: honeydew;
+    color: black;
     padding: 5px;
 }
-
-
-.dialogList {
-    padding: 5px;
-} 
 
 .dialogAva{
     height: 40px;

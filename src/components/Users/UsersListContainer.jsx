@@ -2,10 +2,11 @@ import { connect } from "react-redux";
 import { receiveUsers, unfollow, follow } from "../../Store/reducer/UsersListReducer";
 import UsersList from './UsersList'
 import React from "react"
-// import { Redirect } from "react-router-dom";
-// import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
-import { getFetchingStatus, getUsersOnPage, getOnFetching, getPageOnTarget, getTotalUsersCount, getUsers } from "../../Store/reducer/UserListReducer";
+import { getFetchingStatus, getUsersOnPage,
+         getOnFetching, getPageOnTarget, 
+         getTotalUsersCount, getUsers, 
+         getUsersSort } from "../../Store/Selectors/UsersListSelectors";
 
 
 class UsersContainer extends React.Component {
@@ -36,6 +37,7 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
+        // users: getUsersSort(state),
         usersOnPage: getUsersOnPage(state),
         totalUsersCount: getTotalUsersCount(state),
         pageOnTarget: getPageOnTarget(state),

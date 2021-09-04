@@ -1,5 +1,4 @@
-const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPGRADE_DIALOG_BODY = 'UPGRADE-DIALOG-BODY'
+const SEND_MESSAGE = 'dialogs/SEND-MESSAGE'
 
 let defaultVal = {
     dialogsData: [
@@ -20,7 +19,7 @@ let defaultVal = {
 
 export const dialogsReducer = (state = defaultVal, action) => {
     switch (action.type) {
-        case 'SEND-MESSAGE':
+        case 'dialogs/SEND-MESSAGE':
             let newMessage = { 
                 id : 6, 
                 message : action.newMessage

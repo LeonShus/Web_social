@@ -15,15 +15,6 @@ const Aside = () => {
                 <div>
                     <NavLink to='/dialogs' activeClassName={classes.activeLink}>Dialogs</NavLink>
                 </div>
-                <div>
-                    <NavLink to='/news' activeClassName={classes.activeLink}>News</NavLink>
-                </div>
-                <div>
-                    <NavLink to='/music' activeClassName={classes.activeLink}>Music</NavLink>
-                </div>
-                <div>
-                    <NavLink to='/settings' activeClassName={classes.activeLink}>Settings</NavLink>
-                </div>
             </nav>
 
             <div className={classes.friends}>

@@ -5,9 +5,6 @@ import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import { BrowserRouter, Route} from 'react-router-dom'
 import ProfileContainer from './components/Profile/ProfileContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersListContainer';
 import React from 'react';
 import LoginContainer from './components/Login/LoginContainer';
@@ -41,10 +38,7 @@ class App extends React.Component {
             <Route path='/login' render={() => <LoginContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/dialogs' render={() => <DialogsContainer />} />
-            <Route path='/news' render={() => <News />} />
             <Route path='/users' render={() => <UsersContainer />} />
-            <Route path='/music' render={() => <Music />} />
-            <Route path='/settings' render={() => <Settings />} />
           </div>
           <Footer />
 

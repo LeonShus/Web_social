@@ -1,7 +1,13 @@
+import { createSelector } from 'reselect'
+
 
 export let getUsers = (state) => {
     return state.usersListPage.users
 }
+
+export let getUsersSort = createSelector(getUsers, (users) => {
+    return users.filter(u => true)
+})
 
 export let getUsersOnPage = (state) => {
     return state.usersListPage.usersOnPage

@@ -1,0 +1,12 @@
+.style{
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #666666;
+    padding: 4px;
+    
+}
+
+.style:hover {
+    border: 1px solid white;
+    background: #666666;
+    color: white;
+}

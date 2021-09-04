@@ -1,10 +1,11 @@
-import { Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import React from 'react'
 import { MyTextarea } from '../common/FormsControls/FormsControls'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import MessageItem from './MessageItem/MessageItem'
 import * as Yup from 'yup'
+import Button from '../common/Buttons/Button'
 
 
 class Dialogs extends React.Component {
@@ -16,15 +17,14 @@ class Dialogs extends React.Component {
     
 
     render() {
-        console.log(this.props)
         return (
             <div className={classes.dialogs}>
-                <div>
-                    {this.props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} avatar={el.avatar} />)}
+                <div className={classes.users}>
+                    {this.props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} id={el.id} avatar={el.avatar} />)}
                 </div>
 
-                <div className={classes.massageContainer}>
-                    <div>
+                <div className={classes.dialogContainer}>
+                    <div className={classes.massageContainer}>
                         {this.props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)}
                     </div>
                     <div>
@@ -44,7 +44,7 @@ class Dialogs extends React.Component {
                                     name='newMessage'
                                     type='text'
                                 />
-                                <button type='submit'>Send</button>
+                                <Button buttonText='Send' type='submit'/>
                             </Form>
                             </Formik>
                     </div>

@@ -1,0 +1,18 @@
+.pageNum{
+    font-size: 1.2rem;
+    border-left: 1px solid #2D3538;
+    color: black;
+    padding: 2px;
+}
+
+.target{
+    background-color: #2D3538;
+    color: #A4DBC0;
+    cursor: pointer;
+}
+.point {
+    cursor: pointer;
+}
+.pageBox {
+    display: flex;
+}
