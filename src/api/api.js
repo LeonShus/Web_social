@@ -60,6 +60,22 @@ export const profileApi = {
     putStatus(status) {
         return instance.put(baseUrl + `profile/status`, { status: status})
             
+    },
+
+    putProfileContacts(profile) {
+        
+        return instance.put(baseUrl + `profile`, profile)
+    },
+
+    savePhoto(photoFile) {
+        const formData = new FormData()
+        formData.append('img', photoFile)
+
+        return instance.put(baseUrl + `profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

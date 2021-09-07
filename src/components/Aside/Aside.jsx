@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import classes from'./Aside.module.css'
 import Friends from './Friends/Friends';
 
+//Левый бар с меню
 const Aside = () => {
     return (
         <aside className={classes.aside}>

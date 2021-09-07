@@ -4,6 +4,8 @@ const ADD_NEW_POST = 'profile/ADD-NEW-POST'
 const GET_PROFILE_INFO = 'profile/GET-PROFILE-INFO'
 const GET_PROFILE_STATUS = 'profile/GET-PROFILE-STATUS'
 const DELETE_POST = 'profile/DELETE-POST'
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE-PHOTO-SUCCESS'
+const SELECT_PROFILE_CONTACTS = 'profile/SELECT-PROFILE-CONTACTS'
 
 let defaultVal = {
 
@@ -45,6 +47,11 @@ export const profileReducer = (state = defaultVal, action) => {
                 ...state,
                 postData: state.postData.filter(el => el.id != action.userId)
             }
+        case 'profile/SAVE-PHOTO-SUCCESS':
+            return {
+                ...state,
+                profileInfo: {...state.profileInfo, photos: action.photo}
+            }
         default:
             return state
     }
@@ -55,11 +62,17 @@ export const addNewPost = (newPost) => ({ type: ADD_NEW_POST, newPost })
 export const getProfileInfo = (profileInfo) => ({ type: GET_PROFILE_INFO, profileInfo })
 export const getProfileStatus = (status) => ({ type: GET_PROFILE_STATUS, status: status })
 export const deletePost = (userId) => ({ type: DELETE_POST, userId })
+export const selectPhoto = (photo) => ({ type: SAVE_PHOTO_SUCCESS, photo })
+
+
+
 //Thunk
 
-export const getUser = (userId) => async (dispatch) => {
+export const getUser = (userId) => (dispatch) => {
     profileApi.getUser(userId)
-        .then(response => dispatch(getProfileInfo(response)))
+        .then(response => {
+            console.log(response, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            dispatch(getProfileInfo(response))})
 
 }
 
@@ -76,5 +89,24 @@ export const putUserStatus = (status) => async (dispatch) => {
 
     if (response.data.resultCode === 0) {
         dispatch(getProfileStatus(status))
+    }
+}
+
+export const putPhoto = (photoFile) => async (dispatch) => {
+    let response = await profileApi.savePhoto(photoFile)
+
+    if (response.data.resultCode === 0) {
+        dispatch(selectPhoto(response.data.data.photos))
+    }
+}
+
+export const putContacts = (profCont) => async (dispatch, getState) => {
+
+    const userId = getState().authUser.id
+
+    let response = await profileApi.putProfileContacts(profCont)
+
+    if (response.data.resultCode === 0){
+        dispatch(getUser(userId))
     }
 }

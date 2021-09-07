@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { MyCheckbox, MyTextInput } from '../common/FormsControls/FormsControls'
 import { Redirect } from 'react-router-dom'
 
-
+// Создаем форму которую будем отправлять на сервер
 let LoginForm = (props) => {
     return (
         <Formik
@@ -51,11 +51,13 @@ let LoginForm = (props) => {
     )
 }
 
+
 let Login = (props) => {
     let login = (email, password, rememberMe) => {
         props.loginUser(email, password, rememberMe)
     }
-
+    // Проверяем залогинет ли пользователь, если да,
+    // то переносим его на страницу профиля
     if (props.isAuth) {
         return <Redirect to='/profile' />
     }

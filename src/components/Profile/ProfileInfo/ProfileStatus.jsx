@@ -26,7 +26,7 @@ let ProfileStatus = (props) => {
 
             {editMode &&
                 <Formik
-                    initialValues={{ status: '' }}
+                    initialValues={{ status: props.profileStatus }}
                     validationSchema={Yup.object({
                         status: Yup.string()
                             .max(12, 'Max chars 30')

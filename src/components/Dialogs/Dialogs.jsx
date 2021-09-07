@@ -17,12 +17,14 @@ class Dialogs extends React.Component {
     
 
     render() {
+        
         return (
+            //отрисовываем пользователей в чате
             <div className={classes.dialogs}>
                 <div className={classes.users}>
                     {this.props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} id={el.id} avatar={el.avatar} />)}
                 </div>
-
+                {/* Отрисовыем диалоговое окно */}
                 <div className={classes.dialogContainer}>
                     <div className={classes.massageContainer}>
                         {this.props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)}
@@ -57,51 +59,3 @@ class Dialogs extends React.Component {
 }
 
 export default Dialogs
-
-
-// Компонента пользуется данными,
-// которые пришли из контейнера и вызывает callback функции
-
-
-// class Dialogs extends React.Component {
-
-//     // добавляем сообщение в state
-//     sendMessage = () => {
-//         this.props.onSendMessage()
-//     }
-
-//     // меняем с текст нового сообщения в state
-//     messageChange = (e) => {
-//         let text = e.target.value
-//         this.props.onMessageChange(text)
-//     }
-
-//     render() {
-//         return (
-//             <div className={classes.dialogs}>
-//                 <div>
-//                     {this.props.dialogPage.dialogsData.map(el => <DialogItem userName={el.userName} key={el.id} avatar={el.avatar} />)}
-//                 </div>
-
-//                 <div className={classes.massageContainer}>
-//                     <div>
-//                         {this.props.dialogPage.messagesData.map(el => <MessageItem messageValue={el.message} key={el.id} avatar={el.avatar} />)}
-//                     </div>
-//                     <div>
-//                         <textarea onChange={this.messageChange}
-//                             value={this.props.dialogPage.newMessage}
-//                             placeholder='Enter your message'></textarea>
-//                         <div>
-//                             <button onClick={this.sendMessage}>Send</button>
-//                         </div>
-
-//                     </div>
-
-//                 </div>
-
-//             </div>
-//         )
-//     }
-// }
-
-// export default Dialogs

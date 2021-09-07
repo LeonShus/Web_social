@@ -9,9 +9,9 @@ import Button from '../../common/Buttons/Button'
 
 const MyPost = React.memo((props) => {
 
-
+    //Создаем посты из стейта
     let posts = props.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)
-
+    //Добавляем новый пост в стейт
     let addPost = (newPost) => props.addNewPost(newPost)
 
     
@@ -34,7 +34,6 @@ const MyPost = React.memo((props) => {
                         type='text'
                     />
                     <Button buttonText='Post' type='submit'/>
-                    {/* <button type='submit'>Post</button> */}
                 </Form>
             </Formik>
             <div className={classes.post}>
@@ -47,35 +46,3 @@ const MyPost = React.memo((props) => {
 
 export default MyPost
 
-
-// class MyPost extends React.Component {
-
-//     addPost = () => this.props.addNewPost()
-//     postChange = (e) => {
-//         let text = e.target.value
-//         this.props.upgradePostText(text)
-//     }
-
-//     render() {
-//         return (
-//             <div className={classes.myPostContainer}>
-//                 <div>
-//                     <div>
-//                         <textarea onChange={this.postChange} placeholder='Enter post'
-//                             value={this.props.profilePage.newPostText} />
-//                     </div>
-//                     <div>
-//                         <button onClick={this.addPost}>Add post</button>
-//                     </div>
-
-//                 </div>
-//                 <div className={classes.post}>
-//                     {this.props.profilePage.postData.map(el => <Post message={el.message} key={el.id} likeCount={el.likeCount} />)}
-//                 </div>
-
-//             </div>
-//         )
-//     }
-// }
-
-// export default MyPost

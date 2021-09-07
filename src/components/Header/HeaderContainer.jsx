@@ -4,7 +4,7 @@ import Header from './Header'
 import { logoutUser } from '../../Store/reducer/AuthReducer'
 import { withRouter } from 'react-router-dom'
 
-
+//получаем данные и прокидываем их в компоненту
 class HeaderContainer extends React.Component {
 
     render() {

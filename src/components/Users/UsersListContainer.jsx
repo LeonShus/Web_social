@@ -46,7 +46,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-//прокидываем все через compose добавляя все обработчики
 
 export default compose(
     connect(mapStateToProps, {receiveUsers, unfollow,follow }),

@@ -33,7 +33,9 @@ export const setAuthUserData = (id, login, email, isAuth) => ({ type: SET_AUTH_U
 export const setUserLogin = (loginData) => ({ type: SET_USER_LOGIN, loginData: loginData })
 
 
-//Делаем thunk
+//thunk
+
+//Получаем залогиненого пользователся
 export const authMainUser = () => async (dispatch) => {
     let response = await authApi.authMe()
 
@@ -42,7 +44,7 @@ export const authMainUser = () => async (dispatch) => {
         dispatch(setAuthUserData(id, login, email, true))
     }
 }
-
+// Логинем пользователя
 export const loginUser = (email, password, rememberMe) => async (dispatch) => {
     let response = await authApi.loginUser(email, password, rememberMe)
 
@@ -51,7 +53,7 @@ export const loginUser = (email, password, rememberMe) => async (dispatch) => {
     }
 }
 
-
+//Выходим с учетки
 export const logoutUser = () => async (dispatch) => {
     let response = await authApi.logout()
 

@@ -4,7 +4,7 @@ import {connect} from  'react-redux'
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect'
 import { compose } from 'redux'
 
-
+//Получаем и передаем данные в компоненту
 let mapStateToProps = (state) => {
     return {
         dialogPage : state.dialogPage
@@ -17,5 +17,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, {sendNewMessage} ),
+    //добавляем хок на проверку логина
     withAuthRedirect
 )(Dialogs)

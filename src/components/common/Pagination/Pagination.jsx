@@ -3,13 +3,14 @@ import Button from '../Buttons/Button'
 import classes from './Pagination.module.css'
 
 export const Pagination = ({ totalItemsCount, usersOnPage, pageOnTarget, onPageChange, pageInBox = 10 }) => {
-
+    //Узнаем кол-во страниц
     let pagesCount = Math.ceil(totalItemsCount / usersOnPage)
     let pagesArr = []
 
     for (let i = 1; i <= pagesCount; i++) {
         pagesArr.push(i)
     }
+    //Группируем их что бы выдавать частями по клику
     let totalBoxes = Math.ceil(pagesCount / pageInBox)
     let [boxNumber, setBoxNumber] = useState(1)
     let leftBoxNumber = (boxNumber - 1) * pageInBox + 1
