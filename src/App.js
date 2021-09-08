@@ -1,4 +1,5 @@
-import './App.css';
+import './App.css'
+import store from './Store/ReduxStore';
 import Aside from './components/Aside/Aside';
 import Footer from './components/Footer/Footer';
 import HeaderContainer from './components/Header/HeaderContainer';
@@ -9,8 +10,8 @@ import { compose } from 'redux';
 import { connect } from 'react-redux'
 import { initializeApp } from './Store/reducer/AppReducer';
 import Preloader from './components/common/preloader/Preloader';
-
-
+import { Provider } from 'react-redux'
+//Ленивые загрузки
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 const UsersContainer = React.lazy(() => import('./components/Users/UsersListContainer'))
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
@@ -21,7 +22,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.initializeApp()
   }
-
+  //показываем крутилку пока не обновятся данные о пользователе
   render() {
     if (!this.props.initialized) {
       return <Preloader />
@@ -33,7 +34,7 @@ class App extends React.Component {
         <div className='app-wrapper'>
           <HeaderContainer />
           <Aside />
-          <div class='app-wrapper-content'>
+          <div className='app-wrapper-content'>
             <Suspense fallback={<div>Loading...</div>}>
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
               <Route path='/dialogs' render={() => <DialogsContainer />} />
@@ -55,8 +56,18 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default compose(
+const AppWithProv = compose(
   connect(mapStateToProps, { initializeApp })
 )(App)
 
-// export default App
+// Оборачиваем компоненту стейтом передавая стор
+const ProviderApp = () => {
+  return (
+  <Provider store={store}>
+    <AppWithProv />
+  </Provider>
+  )
+}
+
+
+export default ProviderApp

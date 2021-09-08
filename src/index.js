@@ -1,10 +1,8 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import React from 'react';
-import ReactDOM, { render } from 'react-dom';
-import App from './App';
-import store from './Store/ReduxStore';
-import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom';
+import ProviderApp from './App';
 
 // Разбиваем приложения на компоненты
 //Используем библиотеку React-Redux и прокидываем данные в контекст 
@@ -12,9 +10,7 @@ import { Provider } from 'react-redux'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <ProviderApp/>
   </React.StrictMode>,
   document.getElementById('root')
 );

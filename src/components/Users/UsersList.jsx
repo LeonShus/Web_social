@@ -24,7 +24,7 @@ const UsersList = (props) => {
                             <div>
                                 {/* Возможность посетить страницу пользователя */}
                                 <NavLink to={'/profile/' + el.id}>
-                                    <img className={classes.avatar}
+                                    <img className={classes.avatar} alt='Avatar'
                                         src={el.photos.small != null ? el.photos.small : userPhoto} />
                                 </NavLink>
                             </div>

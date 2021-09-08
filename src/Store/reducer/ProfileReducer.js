@@ -5,7 +5,7 @@ const GET_PROFILE_INFO = 'profile/GET-PROFILE-INFO'
 const GET_PROFILE_STATUS = 'profile/GET-PROFILE-STATUS'
 const DELETE_POST = 'profile/DELETE-POST'
 const SAVE_PHOTO_SUCCESS = 'profile/SAVE-PHOTO-SUCCESS'
-const SELECT_PROFILE_CONTACTS = 'profile/SELECT-PROFILE-CONTACTS'
+
 
 let defaultVal = {
 
@@ -45,7 +45,7 @@ export const profileReducer = (state = defaultVal, action) => {
         case 'profile/DELETE-POST':
             return {
                 ...state,
-                postData: state.postData.filter(el => el.id != action.userId)
+                postData: state.postData.filter(el => el.id !== action.userId)
             }
         case 'profile/SAVE-PHOTO-SUCCESS':
             return {
@@ -71,7 +71,6 @@ export const selectPhoto = (photo) => ({ type: SAVE_PHOTO_SUCCESS, photo })
 export const getUser = (userId) => (dispatch) => {
     profileApi.getUser(userId)
         .then(response => {
-            console.log(response, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             dispatch(getProfileInfo(response))})
 
 }

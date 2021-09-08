@@ -4,7 +4,7 @@ import classes from './Preloader.module.css'
 let Preloader = (props) => {
     return (
         <div className={classes.pose}>
-            <img src={preloader}></img>
+            <img src={preloader} alt='Preloader'></img>
         </div>
     )
 }

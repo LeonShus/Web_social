@@ -24,15 +24,15 @@ export const Pagination = ({ totalItemsCount, usersOnPage, pageOnTarget, onPageC
         <div className={classes.pageBox}>
 
             {boxNumber > 1 &&
-                <Button onClickFunc={prePage} buttonText='eded'/>
+                <Button onClickFunc={prePage} buttonText='<<'/>
                 // <button onClick={prePage}>prev</button>
                 }
 
             <div className={classes.pageLine}>
                 {pagesArr
                     .filter(e => e >= leftBoxNumber && e <= rightBoxNumber)
-                    .map((e) => <span className={`${classes.pageNum}
-                                                ${pageOnTarget == e
+                    .map((e, index) => <span key={index} className={`${classes.pageNum}
+                                                ${pageOnTarget === e
                             ? classes.target
                             : classes.point}`
                     }
@@ -40,7 +40,7 @@ export const Pagination = ({ totalItemsCount, usersOnPage, pageOnTarget, onPageC
             </div>
 
             {totalBoxes > boxNumber &&
-                <Button onClickFunc={nextPage} buttonText='eded'/>}
+                <Button onClickFunc={nextPage} buttonText='>>'/>}
 
         </div>
 

@@ -8,9 +8,6 @@ class MessageItem extends React.Component {
         return (
             <div className={classes.messages}>
                 <div>
-                    <img src={this.props.avatar}></img>
-                </div>
-                <div>
                     {this.props.messageValue}
                 </div>
             </div>

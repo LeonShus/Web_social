@@ -5,8 +5,8 @@ import React from "react"
 import { compose } from "redux";
 import { getFetchingStatus, getUsersOnPage,
          getOnFetching, getPageOnTarget, 
-         getTotalUsersCount, getUsers, 
-         getUsersSort } from "../../Store/Selectors/UsersListSelectors";
+         getTotalUsersCount, getUsers
+         } from "../../Store/Selectors/UsersListSelectors";
 
 
 class UsersContainer extends React.Component {

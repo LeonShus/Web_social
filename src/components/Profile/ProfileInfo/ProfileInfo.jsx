@@ -28,7 +28,7 @@ let ProfileInfo = (props) => {
         // Добавляем аватарку и редактируем статус
         <div className={classes.profileContainer}>
             <div>
-                <img className={classes.ava} src={props.profileInfo.photos.large
+                <img className={classes.ava} alt='Avatar' src={props.profileInfo.photos.large
                     ? props.profileInfo.photos.large
                     : defAvatar}></img>
                 {/* Проверяем наша ли это страница, для отрисовки кнопок */}
@@ -68,7 +68,7 @@ let ProfileInfo = (props) => {
                             </div>
                             <div><b>Contacts</b></div>
                             {Object.keys(props.profileInfo.contacts)
-                                .map(key => <div className={classes.contactsContainer}>{key}: {props.profileInfo.contacts[key]}</div>)
+                                .map((key, index) => <div key={index} className={classes.contactsContainer}>{key}: {props.profileInfo.contacts[key]}</div>)
                             }
                         </div>
                     }

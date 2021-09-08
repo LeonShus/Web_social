@@ -52,7 +52,7 @@ export const usersReducer = (state = defaultState, action) => {
                 ...state,
                 fetchingStatus: action.status
                     ? [...state.fetchingStatus, action.userId]
-                    : state.fetchingStatus.filter(item => item != action.userId)
+                    : state.fetchingStatus.filter(item => item !== action.userId)
             }
         default:
             return state
@@ -93,7 +93,7 @@ export const unfollow = (userId) => async (dispatch) => {
 
     let response = await UsersApi.unFollowUser(userId)
 
-    if (response.resultCode == 0) {
+    if (response.resultCode === 0) {
         dispatch(unfollowSuccess(userId))
     }
     dispatch(fetchProgress(false, userId))
@@ -105,7 +105,7 @@ export const follow = (userId) => async (dispatch) => {
 
     let response = await UsersApi.followUser(userId)
 
-    if (response.resultCode == 0) {
+    if (response.resultCode === 0) {
         dispatch(followSuccess(userId))
     }
     dispatch(fetchProgress(false, userId))

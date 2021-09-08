@@ -7,7 +7,7 @@ class DialogItem extends React.Component {
         return (
             <div className={classes.dialogList}>
                     <div>
-                        <img className={classes.dialogAva} src={this.props.avatar}></img>
+                        <img className={classes.dialogAva} src={this.props.avatar} alt='Avatar'></img>
                     </div>
                     <div>
                         <NavLink to={'/dialogs/' + this.props.id}>{this.props.userName}</NavLink>

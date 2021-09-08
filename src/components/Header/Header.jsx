@@ -10,7 +10,7 @@ const Header = React.memo((props) => {
     return (
         <header className={classes.header}>
             <div>
-                <img className={classes.logo} src={logo} ></img>
+                <img className={classes.logo} src={logo} alt='Avatar'></img>
             </div>
             <div className={classes.login}>
                 {!props.isAuth
